@@ -1,6 +1,6 @@
 class CreateVendors < ActiveRecord::Migration
   def change
-  	drop_table :vendors
+  	#drop_table :vendors
     create_table :vendors do |t|
       t.string :name
       t.string :company
