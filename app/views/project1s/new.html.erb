@@ -1,0 +1,36 @@
+<script>
+  $(function() {
+    $( "#datepicker" ).datepicker({ minDate: -20, maxDate: "+1M +10D" });
+  });
+  </script>
+
+
+<h3>Add Project</h3>
+
+<%= form_for @project do |f| %>
+
+<label>Client</label>
+<!--f collection takes for arrguments -->
+<%= f.collection_select :client_id, Client.all, :id, :company, prompt: "Select Client" %><br/>
+
+<label>Name</label><br/>
+<%= f.text_field :name %><br/>
+
+<label>Description</label><br/>
+<%= f.text_area :description, rows:5, cols: 25 %><br/>
+
+<label>Start Date</label><br/>
+<%# f.date_select :start_date, order:[:day, :month, :year], start_year: 2015, end_year: (Date.today.year + 3), include_blank: true %><br/>
+<%= f.text_field :start_date, id: "datepicker" %><br/>
+
+<label>Status</label><br/>
+<%= f.select :status, %w[new on_going completed archieved], prompt: "Select Status" %><br/>
+
+<label>Status</label><br/>
+<%= f.radio_button :status, "new" %> New <br/>
+<%= f.radio_button :status, "on_going" %> on_going <br/>
+<%= f.radio_button :status, "completed" %> Completed <br/>
+<%= f.radio_button :status, "archieved" %> Archieved <br/>
+
+<%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>

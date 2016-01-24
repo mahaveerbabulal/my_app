@@ -1,0 +1,46 @@
+<h3><%= @client.name %></h3>
+<P><b><%= @client.company %> - <%= @client.email %></b></P>
+<%= link_to "edit", edit_client_path(@client) %> |
+<%= link_to "delete record", client_path(@client), method: :delete, data: {confirm: "Are you sure"} %> |
+<%= link_to "Show Json", client_path(@client, format: :json) %>|
+<%= link_to "Show XML", client_path(@client, format: :xml) %>
+
+<% if @client.project1s.empty? %>
+	<h3> No project found, Add your first project </h3>
+<%else %>
+	<h3>Projects for <%= @client.name %></h3>
+<ul>
+	<% @client.project1s.each do |project| %>
+	<li><%= project.name %> - <%= project.status %> </li>
+	
+	<% end %>
+</ul>
+<% end %>
+
+<h3>New project</h3>
+<ul>
+	<% @new_projects.each do |n| %>
+	<li><%= n.name %></li>
+	<% end %>
+</ul>
+<h3>Completed project</h3>
+<ul>
+	<% @completed_projects.each do |n| %>
+	<li><%= n.name %></li>
+	<% end %>
+</ul>
+<h3>Archieved project</h3>
+<ul>
+	<% @archieved_projects.each do |n| %>
+	<li><%= n.name %></li>
+	<% end %>
+</ul>
+<h3>On-going project</h3>
+<ul>
+	<% @on_going_projects.each do |n| %>
+	<li><%= n.name %></li>
+	<% end %>
+</ul>
+
+
+<%= link_to "Back", clients_path %>
